@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+    <h2>Вход</h2>
+
+    {% with messages = get_flashed_messages(category_filter=["error"]) %}
+      {% if messages %}
+        <div class="error">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post" action="{{ url_for('login') }}">
+        <label for="login">Логин:</label>
+        <input type="text" id="login" name="login" required autofocus>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label class="checkbox-label">
+            <input type="checkbox" name="remember" id="remember">
+            Запомнить меня
+        </label>
+
+        <button type="submit">Войти</button>
+    </form>
+{% endblock %}

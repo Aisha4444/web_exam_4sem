@@ -1,0 +1,258 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #4a2a3a;
+    background: #fff0f6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+    background: linear-gradient(90deg, #f7c6d0 0%, #d98aa7 100%);
+    color: #fff;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 8px rgba(217, 138, 167, 0.3);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav a {
+    color: #f9d5e5;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #f48fb1;
+    text-decoration: underline;
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff0f6;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(217, 138, 167, 0.15);
+}
+
+footer {
+    background: #fdeef3;
+    padding: 1.5rem;
+    text-align: center;
+    color: #a64d6e;
+    font-size: 0.9rem;
+    margin-top: 3rem;
+}
+
+.btn {
+    display: inline-block;
+    background: #f48fb1;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(244, 143, 177, 0.5);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    background: #d81b60;
+    box-shadow: 0 6px 12px rgba(216, 27, 96, 0.6);
+}
+
+.delete-btn {
+    background: #f06292;
+    box-shadow: 0 4px 6px rgba(240, 98, 146, 0.5);
+}
+
+.delete-btn:hover {
+    background: #ad1457;
+    box-shadow: 0 6px 12px rgba(173, 20, 87, 0.7);
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 3rem;
+    margin: 3rem 0;
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    border: 1px solid #f8bbd0;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #fff0f6;
+    box-shadow: 0 8px 20px rgba(244, 143, 177, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(216, 27, 96, 0.25);
+}
+
+.book-cover {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: block;
+    box-shadow: 0 4px 10px rgba(244, 143, 177, 0.3);
+}
+
+.book-actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+    color: #7b4061;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1.5px solid #f8bbd0;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #7b4061;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+    background: #fff0f6;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="file"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #d81b60;
+    box-shadow: 0 0 0 3px rgba(216, 27, 96, 0.3);
+}
+
+.form-group textarea {
+    min-height: 180px;
+    resize: vertical;
+    background: #fff0f6;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0;
+    gap: 0.75rem;
+}
+
+.pagination button,
+.pagination a {
+    background: #f8bbd0;
+    border: none;
+    padding: 0.6rem 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #7b4061;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.pagination button:hover,
+.pagination a:hover {
+    background: #d81b60;
+    color: white;
+}
+
+.pagination .active {
+    background: #ad1457;
+    color: white;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(217, 27, 96, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: #fff0f6;
+    margin: 12% auto;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 480px;
+    box-shadow: 0 10px 30px rgba(216, 27, 96, 0.15);
+}
+
+.flashes {
+    margin-bottom: 1.2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flash {
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(216, 27, 96, 0.1);
+}
+
+.flash.error {
+    background-color: #fce4ec;
+    color: #ad1457;
+    border: 1px solid #f8bbd0;
+}
+
+.flash.success {
+    background-color: #f8bbd0;
+    color: #7b4061;
+    border: 1px solid #d81b60;
+}
+
+.flash.warning {
+    background-color: #fce4ec;
+    color: #ad1457;
+    border: 1px solid #f8bbd0;
+}

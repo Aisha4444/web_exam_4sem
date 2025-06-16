@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ book.title }}</h1>
+
+<div class="book-details">
+    <img src="{{ url_for('static', filename='covers/' + book.cover.filename) }}" alt="Обложка книги {{ book.title }}" class="book-cover">
+
+    <p><strong>Автор:</strong> {{ book.author }}</p>
+    <p><strong>Год издания:</strong> {{ book.year }}</p>
+    <p><strong>Издательство:</strong> {{ book.publisher }}</p>
+    <p><strong>Количество страниц:</strong> {{ book.pages }}</p>
+    <p><strong>Жанры:</strong>
+        {% for genre in book.genres %}
+            {{ genre.name }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+
+    <h2>Описание</h2>
+    <div class="book-description">
+        {{ description_html|safe }}
+    </div>
+</div>
+
+<hr>
+
+<h2>Рецензии</h2>
+
+{% if reviews %}
+    <div class="reviews-list">
+        {% for review in reviews %}
+            <div class="review-card" id="review-{{ review.id }}">
+                <p><strong>Пользователь:</strong> {{ review.user.last_name }} {{ review.user.first_name }}</p>
+                <p><strong>Оценка:</strong> {{ review.rating }}/5</p>
+                <div class="review-text">
+                    {{ review.text|safe }}
+                </div>
+
+                {% if current_user.is_authenticated and (current_user.id == review.user_id or current_user.role.name in ['admin', 'moderator']) %}
+                    <form method="POST" action="{{ url_for('delete_review', review_id=review.id) }}" onsubmit="return confirm('Вы уверены, что хотите удалить эту рецензию?');" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                    </form>
+                {% endif %}
+
+                <hr>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Пока нет рецензий на эту книгу.</p>
+{% endif %}
+
+{% if current_user.is_authenticated and current_user.role.name in ['user', 'moderator', 'admin'] %}
+    {% if can_write_review %}
+        <a href="{{ url_for('add_review', book_id=book.id) }}" class="btn">Написать рецензию</a>
+    {% else %}
+        <h3>Ваша рецензия</h3>
+        <div class="review-text">{{ user_review.text|safe }}</div>
+        <p><strong>Оценка:</strong> {{ user_review.rating }}/5</p>
+    {% endif %}
+{% endif %}
+
+{% if current_user.is_authenticated and current_user.role.name in ['moderator', 'admin'] %}
+  <div class="moderation-link" style="margin-top: 1rem;">
+    <a href="{{ url_for('review_moderation') }}" class="btn btn-warning">
+      Модерация рецензий
+    </a>
+  </div>
+{% endif %}
+{% endblock %}

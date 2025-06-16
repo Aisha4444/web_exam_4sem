@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import "_book_form_macros.html" as forms %}
+
+{% block content %}
+<h1>{{ 'Редактирование' if book else 'Добавление' }} книги</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {{ forms.book_form_fields(book, genres, now) }}
+    <button type="submit" class="btn">Сохранить</button>
+    <a href="{{ url_for('view_book', book_id=book.id) if book else url_for('index') }}" class="btn">Отмена</a>
+</form>
+{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+<script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    new EasyMDE({ element: document.getElementById('description') });
+});
+</script>
+{% endblock %}
